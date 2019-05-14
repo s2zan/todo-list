@@ -13,7 +13,7 @@ class Todo(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    deadline = models.DateTimeField()
+    deadline = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):

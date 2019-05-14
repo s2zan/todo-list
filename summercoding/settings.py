@@ -55,7 +55,7 @@ ROOT_URLCONF = 'summercoding.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['summercoding/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
