@@ -40,12 +40,22 @@
         .very-important.completed{
             background:red;
         }
+        .title {
+            color: black;
+        }
+        .title:hover {
+            color: black;
+        }
     </style>
 </head>
 <body>
 
 <nav class="navbar  navbar-light bg-light navbar-expand-lg ">
-    <a class="navbar-brand" href="#">TODO list</a>
+    <a class="navbar-brand" href="{% url 'home' %}">TODO list</a>
+    <div style="float:right;">
+    <a class="nav-link" href="{% url 'add' %}">Add</a>
+
+    </div>
     <!--
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">

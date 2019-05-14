@@ -3,11 +3,11 @@
     <ul class="list-group list-group-flush">
 
     {% for todo in todos %}
-        <li class="list-group-item" id="{{ todo.id }}">
+        <li class="list-group-item">
             <div class="row">
                 <div class="col" style="flex-grow:0; padding:0;">
-                    <a class="btn" href="#" role="button" style="padding: 0;">
-                        <div class="todocheck
+                    <a class="btn" href="#" role="button" style="padding: 0;" onclick="check('{{ todo.id }}')">
+                        <div  id="{{ todo.id }}" class="todocheck
                                     {% if todo.completed %}completed{% endif %}
                                     {% if todo.priority == '1' %}important{% elif todo.priority == '2' %}very-important{% endif %}">
                             <span class="fas fa-check" style="font-size: 9pt; display:table-cell; padding:3px;"></span>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col">
                     <div style="vertical-align: center">
-                        <div style="float: left">{{ todo.title }}</div>
+                        <div style="float: left"><a href="#" class="title"> {{ todo.title }} </a></div>
                         <div style="float: right; color: gray; margin-left:10px"><i class="fas fa-trash-alt"></i></div>
                         <div style="float: right">{% if todo.deadline != None %}{{ todo.deadline }}{% endif %}</div>
                     </div>
@@ -36,4 +36,13 @@
         </li>
     {% endfor %}
     </ul>
+    <script>
+        function check(id) {
+            if($("#"+id).hasClass("completed")){
+                $("#"+id).removeClass("completed")
+                return
+            }
+            $("#"+id).addClass("completed")
+        }
+    </script>
 {% endblock %}
