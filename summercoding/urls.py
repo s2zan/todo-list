@@ -20,5 +20,7 @@ import todo.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', todo.views.home, name='home'),
-    path('add/', todo.views.add, name='add'),
+    path('new/', todo.views.new, name='new'),
+    path('detail/<int:todo_id>', todo.views.detail, name="detail"),
+    path('add/', todo.views.add, name="add")
 ]
