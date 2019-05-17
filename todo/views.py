@@ -27,16 +27,16 @@ def add(request):
     todo.priority = request.GET['priority']
 
     date = request.GET['datepicker'].strip()
-    time = time_format(request.GET['timepicker'].strip())
+    time = request.GET['timepicker'].strip()
 
-    date = date.replace('.', '-')
-    if date == "" :
-        date = datetime.today().strftime("%Y-%m-%d")
+    if date != "" or time != "":
+        time = time_format(time)
+        date = date.replace('.', '-')
+        if date == "":
+            date = datetime.datetime.today().strftime("%Y-%m-%d")
 
-    todo.deadline = date+" "+time
-
-    print(todo.deadline)
-    # 내용 더 들어가야함!!!!!!!!!!!!!!!!!!
+        todo.deadline = date+" "+time
+        
     todo.save()
 
     return redirect('/detail/' + str(todo.id))
@@ -47,15 +47,13 @@ def time_format(org):
         split = org.split()
         head = split[0]
         time = list(map(int, split[1].split(':')))
-
-        if head=='오후':
+        if head == '오후':
             time[0] += 12
 
         org = str(time[0]) + ':' + str(time[1]) + ":00"
 
     else:
         org = "23:59:59"
-
     return org
 
 

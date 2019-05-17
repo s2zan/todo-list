@@ -18,7 +18,7 @@
                     <div style="vertical-align: center">
                         <div style="float: left"><a href="{% url 'detail' todo.id %}" class="title"> {{ todo.title }} </a></div>
                         <div style="float: right; color: gray; margin-left:10px"><i class="fas fa-trash-alt"></i></div>
-                        <div style="float: right">{% if todo.deadline != None %}{{ todo.deadline|date:"Y.m.d f" }}{% endif %}</div>
+                        <div style="float: right">{% if todo.deadline != None %}{{ todo.deadline|date:"Y.m.d H:i" }}{% endif %}</div>
                     </div>
                 </div>
             </div>
