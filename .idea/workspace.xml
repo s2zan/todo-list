@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c39f90-e70a-445f-8e12-05f05675120e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/summercoding/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/summercoding/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summercoding/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/summercoding/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/todo/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+            <state relative-caret-position="528">
+              <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -90,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/summercoding/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="73" column="38" lean-forward="true" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
+            <state relative-caret-position="138">
+              <caret line="82" column="65" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -126,13 +124,13 @@
         <option value="$PROJECT_DIR$/todo/admin.py" />
         <option value="$PROJECT_DIR$/summercoding/settings.py" />
         <option value="$PROJECT_DIR$/todo/templates/add.html" />
-        <option value="$PROJECT_DIR$/summercoding/templates/base.html" />
         <option value="$PROJECT_DIR$/todo/models.py" />
         <option value="$PROJECT_DIR$/todo/templates/new.html" />
         <option value="$PROJECT_DIR$/summercoding/urls.py" />
         <option value="$PROJECT_DIR$/todo/templates/home.html" />
         <option value="$PROJECT_DIR$/todo/templates/detail.html" />
         <option value="$PROJECT_DIR$/todo/views.py" />
+        <option value="$PROJECT_DIR$/summercoding/templates/base.html" />
       </list>
     </option>
   </component>
@@ -252,12 +250,12 @@
       <workItem from="1557821671670" duration="978000" />
       <workItem from="1557835159311" duration="1735000" />
       <workItem from="1557977700339" duration="10471000" />
-      <workItem from="1558098160965" duration="3259000" />
+      <workItem from="1558098160965" duration="3907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27015000" />
+    <option name="totallyTimeSpent" value="27663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -345,30 +343,6 @@
     <entry file="file://$PROJECT_DIR$/summercoding/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/todo/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/todo/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/todo/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/todo/templates/new.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -386,20 +360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/summercoding/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="73" column="38" lean-forward="true" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/todo/templates/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="36" column="170" selection-start-line="36" selection-start-column="170" selection-end-line="36" selection-end-column="170" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/todo/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -410,13 +370,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/todo/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/todo/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/todo/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+        <state relative-caret-position="528">
+          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/todo/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/todo/templates/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="36" column="170" selection-start-line="36" selection-start-column="170" selection-end-line="36" selection-end-column="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/summercoding/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="82" column="65" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
         </state>
       </provider>
     </entry>

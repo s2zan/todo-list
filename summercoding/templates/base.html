@@ -80,7 +80,7 @@
 
 <nav class="navbar  navbar-light bg-light navbar-expand-lg ">
     <a class="navbar-brand" href="{% url 'home' %}">TODO list</a>
-    {{ noti }}
+    <span class="badge badge-pill badge-danger">{{ noti }}</span>
     <div style="float:right;">
         <a class="nav-link" href="{% url 'new' %}">Add</a>
     </div>

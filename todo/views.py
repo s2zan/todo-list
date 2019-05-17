@@ -36,7 +36,7 @@ def add(request):
             date = datetime.datetime.today().strftime("%Y-%m-%d")
 
         todo.deadline = date+" "+time
-        
+
     todo.save()
 
     return redirect('/detail/' + str(todo.id))
@@ -69,7 +69,7 @@ def delete(request):
 
 def notification():
     # 날짜 지난거 뱃지로 표시하자 (몇개인지...)
-    return Todo.objects.filter().count()
+    return Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=datetime.datetime.now()).count()
 
 
 def out_of_date(request):
