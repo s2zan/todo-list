@@ -1,34 +1,54 @@
 {% extends 'base.html' %}
 {% block contents %}
     <h2>{{ title }}</h2>
-    <ul class="list-group list-group-flush">
 
-    {% for todo in todos %}
-        <li class="list-group-item" id="line_{{ todo.id }}">
-            <div class="row">
-                <div class="col" style="flex-grow:0; padding:0;">
-                    <a role="button" class="btn complete" style="padding: 0;" name="{{ todo.id }}">
-                        <div  id="{{ todo.id }}" class="todocheck
-                                    {% if todo.completed %}completed{% endif %}
-                                    {% if todo.priority == '1' %}important{% elif todo.priority == '2' %}very-important{% endif %}">
-                            <span class="fas fa-check" style="font-size: 9pt; display:table-cell; padding:3px;"></span>
+    {% if todos|length != 0 %}
+        <ul class="list-group list-group-flush">
+        {% for todo in todos %}
+            <li class="list-group-item" id="line_{{ todo.id }}">
+                <div class="row">
+                    <div class="col" style="flex-grow:0; padding:0;">
+                        <a role="button" class="btn complete" style="padding: 0;" name="{{ todo.id }}">
+                            <div  id="{{ todo.id }}" class="todocheck
+                                        {% if todo.completed %}completed{% endif %}
+                                        {% if todo.priority == '1' %}important{% elif todo.priority == '2' %}very-important{% endif %}">
+                                <span class="fas fa-check" style="font-size: 9pt; display:table-cell; padding:3px;"></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col">
+                        <div style="vertical-align: center">
+                            <div style="float: left">
+                                <a href="{% url 'detail' todo.id %}" class="title"> {{ todo.title }} </a>
+                                {% if today|date:"Y.m.d" == todo.deadline|date:"Y.m.d" %}
+                                    <span style="margin-left:10px;" class="badge badge-info">today</span>
+                                {% endif %}
+                            </div>
+
+                            <div style="float: right; color: gray; margin-left:10px"><a role="button" class="delete" name="{{ todo.id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a></div>
+                            <div style="float: right; width:200px">
+                                {% if todo.deadline != None %}
+                                    {{ todo.deadline|date:"Y.m.d"}}
+                                    {% if todo.deadline|date:"H:i" != '23:59' %}
+                                        {% if todo.deadline|date:"A" == "AM" %} 오전
+                                        {% else %} 오후
+                                        {% endif %}
+                                        {{ todo.deadline|date:"H:i" }}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <div style="vertical-align: center">
-                        <div style="float: left"><a href="{% url 'detail' todo.id %}" class="title"> {{ todo.title }} </a></div>
-
-                        <div style="float: right; color: gray; margin-left:10px"><a role="button" class="delete" name="{{ todo.id }}">
-                            <i class="fas fa-trash-alt"></i>
-                        </a></div>
-                        <div style="float: right">{% if todo.deadline != None %}{{ todo.deadline|date:"Y.m.d H:i" }}{% endif %}</div>
                     </div>
                 </div>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h3>등록된 TODO가 아직 없어요!</h3>
+    {% endif %}
     <script>
         $(".complete").click(function(){
             var id = $(this).attr('name')

@@ -8,16 +8,17 @@ import json
 
 def home(request):
     todos = Todo.objects.all().order_by('-updated_at')
-    return render(request, 'home.html', {'title':"전체", 'todos': todos, 'noti': notification()})
+    today = timezone.datetime.today().date()
+    return render(request, 'home.html', {'title':"전체", 'todos': todos, 'noti': notification(), 'today': today, 'noti_un':noti_uncompleted()})
 
 
 def detail(request, todo_id):
     todo_detail = get_object_or_404(Todo, id=todo_id)
-    return render(request, 'detail.html', {'todo': todo_detail, 'noti': notification()})
+    return render(request, 'detail.html', {'todo': todo_detail, 'noti': notification(), 'noti_un':noti_uncompleted()})
 
 
 def new(request):
-    return render(request, 'new.html', {'noti': notification()})
+    return render(request, 'new.html', {'noti': notification(), 'noti_un':noti_uncompleted()})
 
 
 def add(request):
@@ -111,8 +112,12 @@ def notification():
     return Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).count()
 
 
+def noti_uncompleted():
+    return Todo.objects.filter(completed=False).count()
+
+
 def expired(request):
-    todos = Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).order_by('deadline')
+    todos = Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).order_by('-deadline')
     date = {}
     for todo in todos:
         deadline = str(todo.deadline.date())
@@ -120,7 +125,26 @@ def expired(request):
             date[deadline] = []
         date[deadline].append(todo)
 
-    return render(request, 'expired.html', {'date': date, 'noti': notification()})
+    return render(request, 'expired.html', {'date': date, 'noti': notification(), 'title': "기한 만료", 'noti_un':noti_uncompleted()})
+
+
+def uncompleted(request):
+    todos = Todo.objects.filter(completed=False).order_by('deadline')
+    date = {}
+    nodeadline = []
+
+    for todo in todos:
+        if todo.deadline == None:
+            nodeadline.append(todo)
+            continue
+
+        deadline = str(todo.deadline.date())
+        if deadline not in date:
+            date[deadline] = []
+        date[deadline].append(todo)
+
+    today = timezone.datetime.today().date()
+    return render(request, 'expired.html', {'nodeadline': nodeadline, 'date': date, 'noti': notification(), 'title': '미완료', 'today':today, 'noti_un':noti_uncompleted()})
 
 
 def priority_view(request, priority):
@@ -131,4 +155,6 @@ def priority_view(request, priority):
         title = "중요"
     else:
         title = "보통"
-    return render(request, 'home.html', {'title': title, 'todos': todos, 'noti': notification()})
+
+    today = timezone.datetime.today().date()
+    return render(request, 'home.html', {'title': title, 'todos': todos, 'noti': notification(), 'today': today, 'noti_un':noti_uncompleted()})

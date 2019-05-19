@@ -27,5 +27,6 @@ urlpatterns = [
     path('complete/', todo.views.complete, name="complete"),
     path('delete/', todo.views.delete, name="delete"),
     path('expired/', todo.views.expired, name="expired"),
+    path('uncompleted/', todo.views.uncompleted, name="uncompleted"),
     path('priority/<int:priority>', todo.views.priority_view, name="priority"),
 ]
