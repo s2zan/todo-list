@@ -8,7 +8,7 @@ import json
 
 def home(request):
     todos = Todo.objects.all().order_by('-updated_at')
-    return render(request, 'home.html', {'todos': todos, 'noti': notification()})
+    return render(request, 'home.html', {'title':"전체", 'todos': todos, 'noti': notification()})
 
 
 def detail(request, todo_id):
@@ -17,7 +17,6 @@ def detail(request, todo_id):
 
 
 def new(request):
-    # 새 todo 등록 페이지
     return render(request, 'new.html', {'noti': notification()})
 
 
@@ -61,8 +60,7 @@ def time_format(org):
 
 
 def update(request, todo_id):
-    # db에 넣기
-    todo = Todo.objects.get(id=todo_id)
+    todo = get_object_or_404(Todo, id=todo_id)
     todo.title = request.GET['title']
     todo.content = request.GET['content']
     todo.priority = request.GET['priority']
@@ -85,7 +83,6 @@ def update(request, todo_id):
     todo.save()
 
     return redirect('/')
-    #수정 : 수정화면 + 체크박스 바로바로 반영?
 
 
 def complete(request):
@@ -108,16 +105,30 @@ def delete(request):
 
     context = {'result': 'deleted'}
     return HttpResponse(json.dumps(context), content_type="application/json")
-    # 삭제
 
 
 def notification():
-    # 날짜 지난거 뱃지로 표시하자 (몇개인지...)
     return Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).count()
 
 
-def out_of_date(request):
-    # expired tasks, unfinished
-    # 완수하지 못한 목록만 띄우는 페이지 만들...어..야..하나..?
-    todos = Todo.objects.filter()
-    return render(request, 'home.html', {'todos': todos})
+def expired(request):
+    todos = Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).order_by('deadline')
+    date = {}
+    for todo in todos:
+        deadline = str(todo.deadline.date())
+        if deadline not in date:
+            date[deadline] = []
+        date[deadline].append(todo)
+
+    return render(request, 'expired.html', {'date': date, 'noti': notification()})
+
+
+def priority_view(request, priority):
+    todos = Todo.objects.filter(priority=priority).order_by('-updated_at')
+    if priority==2:
+        title = "매우 중요"
+    elif priority==1:
+        title = "중요"
+    else:
+        title = "보통"
+    return render(request, 'home.html', {'title': title, 'todos': todos, 'noti': notification()})

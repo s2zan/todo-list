@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block contents %}
-    <h2>{{ title }}</h2>
     <ul class="list-group list-group-flush">
-
+    {% for day, todos in date.items %}
+        <h2>{{ day }}</h2>
     {% for todo in todos %}
         <li class="list-group-item" id="line_{{ todo.id }}">
             <div class="row">
@@ -27,6 +27,8 @@
                 </div>
             </div>
         </li>
+    {% endfor %}
+        <br><br>
     {% endfor %}
     </ul>
     <script>

@@ -25,5 +25,7 @@ urlpatterns = [
     path('add/', todo.views.add, name="add"),
     path('update/<int:todo_id>', todo.views.update, name="update"),
     path('complete/', todo.views.complete, name="complete"),
-    path('delete/', todo.views.delete, name="delete")
+    path('delete/', todo.views.delete, name="delete"),
+    path('expired/', todo.views.expired, name="expired"),
+    path('priority/<int:priority>', todo.views.priority_view, name="priority"),
 ]
