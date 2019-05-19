@@ -100,9 +100,7 @@ def complete(request):
 def delete(request):
     todo_id = request.POST.get('todo_id', None)
     todo = get_object_or_404(Todo, id=todo_id)
-    print(todo)
     todo.delete()
-    print(todo)
 
     context = {'result': 'deleted', 'noti_un': noti_uncompleted(), 'noti': notification()}
     return HttpResponse(json.dumps(context), content_type="application/json")
