@@ -91,8 +91,8 @@ def complete(request):
     todo = get_object_or_404(Todo, id=todo_id)
     todo.completed = not todo.completed
 
-    context = {'status': todo.completed}
     todo.save()
+    context = {'status': todo.completed, 'noti_un': noti_uncompleted(), 'noti': notification()}
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
@@ -104,7 +104,7 @@ def delete(request):
     todo.delete()
     print(todo)
 
-    context = {'result': 'deleted'}
+    context = {'result': 'deleted', 'noti_un': noti_uncompleted(), 'noti': notification()}
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 

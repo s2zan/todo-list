@@ -1,0 +1,54 @@
+ .col {
+     -ms-flex-preferred-size: 0;
+     flex-basis: 0;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     max-width: 100%;
+     position: relative;
+     width: 100%;
+ }
+ .form-row {
+     display: -ms-flexbox;
+     display: flex;
+     -ms-flex-wrap: wrap;
+     flex-wrap: wrap;
+     margin-right: -5px;
+     margin-left: -5px;
+ }
+ .todocheck {
+     width:20px;
+     height:20px;
+     border:1pt solid gray;
+     background:transparent;
+     border-radius:50%;
+     color:transparent;
+ }
+ .todocheck:hover {
+     border-width:1.5pt;
+ }
+ .important{
+     border-color: orange;
+ }
+ .very-important{
+     border-color: red;
+ }
+ .completed {
+     background:gray;
+     color:white;
+ }
+ .important.completed{
+     background:orange;
+ }
+ .very-important.completed{
+     background:red;
+ }
+ .title {
+     color: black;
+ }
+ .title:hover {
+     color: black;
+ }
+ .was-validated .form-control:valid{
+     border: 1px solid #ced4da;
+     background: #fff;
+ }

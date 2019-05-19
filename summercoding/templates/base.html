@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,84 +19,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <style>
-        .col {
-            -ms-flex-preferred-size: 0;
-            flex-basis: 0;
-            -ms-flex-positive: 1;
-            flex-grow: 1;
-            max-width: 100%;
-            position: relative;
-            width: 100%;
-        }
-        .form-row {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            margin-right: -5px;
-            margin-left: -5px;
-        }
-        .todocheck {
-            width:20px;
-            height:20px;
-            border:1pt solid gray;
-            background:transparent;
-            border-radius:50%;
-            color:transparent;
-        }
-        .todocheck:hover {
-            border-width:1.5pt;
-        }
-        .important{
-            border-color: orange;
-        }
-        .very-important{
-            border-color: red;
-        }
 
-        .completed {
-            background:gray;
-            color:white;
-        }
-        .important.completed{
-            background:orange;
-        }
-        .very-important.completed{
-            background:red;
-        }
-        .title {
-            color: black;
-        }
-        .title:hover {
-            color: black;
-        }
-
-        .was-validated .form-control:valid{
-            border: 1px solid #ced4da;
-            background: #fff;
-        }
-
-        .navbar-nav2 .dropdown-menu {
-            position: absolute;
-        }
-
-        .navbar-nav2 {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-direction: row;
-            flex-direction: row;
-            padding-left: 0;
-            margin-bottom: 0;
-            list-style: none;
-        }
-
-        .navbar-nav2 .nav-link:hover {
-            color: rgba(0,0,0,.7);
-        }
-        .navbar-nav2 .nav-link {
-            color: rgba(0,0,0,.5);
-        }
 
     </style>
 </head>
@@ -113,7 +40,7 @@
                 <a class="nav-link" href="{% url 'uncompleted' %}">
                     <i class="far fa-times-circle"></i>
                     미완료
-                    <span class="badge badge-pill badge-dark">{{ noti_un }}</span>
+                    <span class="badge badge-pill badge-dark"><span id="noti_un">{{ noti_un }}</span></span>
                 </a>
             </li>
             <li style="margin-left: 20px">
@@ -121,7 +48,7 @@
 
                     <i class="fas fa-bell"></i>
                     기한 만료
-                    <span class="badge badge-pill badge-primary">{{ noti }}</span>
+                    <span class="badge badge-pill badge-primary"><span id="noti">{{ noti }}</span></span>
                 </a>
             </li>
             <il style="margin-left: 20px">

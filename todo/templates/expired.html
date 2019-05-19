@@ -108,6 +108,8 @@
                 data: {'todo_id':id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 //dataType: "json",
                 success: function(response){
+                    $("#noti").text(response.noti);
+                    $("#noti_un").text(response.noti_un);
                     if(!response.status){
                         $("#"+id).removeClass("completed");
                         return;
@@ -129,6 +131,8 @@
                     data: {'todo_id':id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                     //dataType: "json",
                     success: function(response){
+                        $("#noti").text(response.noti);
+                        $("#noti_un").text(response.noti_un);
                         $("#line_"+id).remove();
                     },
                     error: function(request, status, error){
