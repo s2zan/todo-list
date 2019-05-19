@@ -3,7 +3,7 @@
     <ul class="list-group list-group-flush">
 
     {% for todo in todos %}
-        <li class="list-group-item">
+        <li class="list-group-item" id="line_{{ todo.id }}">
             <div class="row">
                 <div class="col" style="flex-grow:0; padding:0;">
                     <a role="button" class="btn complete" style="padding: 0;" name="{{ todo.id }}">
@@ -17,28 +17,19 @@
                 <div class="col">
                     <div style="vertical-align: center">
                         <div style="float: left"><a href="{% url 'detail' todo.id %}" class="title"> {{ todo.title }} </a></div>
-                        <div style="float: right; color: gray; margin-left:10px"><i class="fas fa-trash-alt"></i></div>
+
+                        <div style="float: right; color: gray; margin-left:10px"><a role="button" class="delete" name="{{ todo.id }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a></div>
                         <div style="float: right">{% if todo.deadline != None %}{{ todo.deadline|date:"Y.m.d H:i" }}{% endif %}</div>
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="row">
-                <div class="col-1">
-                </div>
-                <div class="col">
-                    <div style="font-size: 8pt">
-                        {{ todo.summary }}
-                    </div>
-                </div>
-            </div>
-            -->
         </li>
     {% endfor %}
     </ul>
     <script>
-        $(".complete").click(function(e){
-            e.preventDefault();
+        $(".complete").click(function(){
             var id = $(this).attr('name')
             $.ajax({
                 type: "POST",
@@ -57,6 +48,24 @@
                     window.location.replace("")
                 }
             });
+        });
+        $(".delete").click(function(){
+            if(confirm("정말로 삭제하나요?")){
+                var id = $(this).attr('name')
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'delete' %}",
+                    data: {'todo_id':id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    //dataType: "json",
+                    success: function(response){
+                        $("#line_"+id).remove();
+                    },
+                    error: function(request, status, error){
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        window.location.replace("")
+                    }
+                });
+            }
         });
     </script>
 {% endblock %}

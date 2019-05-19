@@ -91,10 +91,7 @@ def update(request, todo_id):
 def complete(request):
     todo_id = request.POST.get('todo_id', None)
     todo = get_object_or_404(Todo, id=todo_id)
-    old = todo.completed
     todo.completed = not todo.completed
-    new = todo.completed
-    print(old,'->',new)
 
     context = {'status': todo.completed}
     todo.save()
@@ -103,7 +100,14 @@ def complete(request):
 
 
 def delete(request):
-    pass
+    todo_id = request.POST.get('todo_id', None)
+    todo = get_object_or_404(Todo, id=todo_id)
+    print(todo)
+    todo.delete()
+    print(todo)
+
+    context = {'result': 'deleted'}
+    return HttpResponse(json.dumps(context), content_type="application/json")
     # 삭제
 
 
