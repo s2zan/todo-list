@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block contents %}
-    <form action="{% url 'update' %}"  class="needs-validation" novalidate>
+    <form action="{% url 'update' todo.id%}"  class="needs-validation" novalidate>
         <div class="form-group">
             <label for="title">제목 : </label>
             <input type="text" class="form-control" name="title" id="title" value="{{ todo.title }}" required>

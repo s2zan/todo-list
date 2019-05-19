@@ -6,7 +6,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col" style="flex-grow:0; padding:0;">
-                    <a class="btn" href="#" role="button" style="padding: 0;" onclick="check('{{ todo.id }}')">
+                    <a role="button" class="btn complete" style="padding: 0;" name="{{ todo.id }}">
                         <div  id="{{ todo.id }}" class="todocheck
                                     {% if todo.completed %}completed{% endif %}
                                     {% if todo.priority == '1' %}important{% elif todo.priority == '2' %}very-important{% endif %}">
@@ -37,12 +37,26 @@
     {% endfor %}
     </ul>
     <script>
-        function check(id) {
-            if($("#"+id).hasClass("completed")){
-                $("#"+id).removeClass("completed")
-                return
-            }
-            $("#"+id).addClass("completed")
-        }
+        $(".complete").click(function(e){
+            e.preventDefault();
+            var id = $(this).attr('name')
+            $.ajax({
+                type: "POST",
+                url: "{% url 'complete' %}",
+                data: {'todo_id':id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                //dataType: "json",
+                success: function(response){
+                    if(!response.status){
+                        $("#"+id).removeClass("completed");
+                        return;
+                    }
+                    $("#"+id).addClass("completed");
+                },
+                error: function(request, status, error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    window.location.replace("")
+                }
+            });
+        });
     </script>
 {% endblock %}

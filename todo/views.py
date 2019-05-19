@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from django.utils import timezone
+
 from todo.models import Todo
 
-import datetime
+import json
 
 
 def home(request):
-    todos = Todo.objects.all()
+    todos = Todo.objects.all().order_by('-updated_at')
     return render(request, 'home.html', {'todos': todos, 'noti': notification()})
 
 
@@ -33,13 +35,14 @@ def add(request):
         time = time_format(time)
         date = date.replace('.', '-')
         if date == "":
-            date = datetime.datetime.today().strftime("%Y-%m-%d")
+            date = timezone.datetime.today().strftime("%Y-%m-%d")
 
         todo.deadline = date+" "+time
 
+    todo.updated_at = timezone.datetime.today()
     todo.save()
 
-    return redirect('/detail/' + str(todo.id))
+    return redirect('/')
 
 
 def time_format(org):
@@ -57,9 +60,46 @@ def time_format(org):
     return org
 
 
-def update(request):
-    pass
+def update(request, todo_id):
+    # db에 넣기
+    todo = Todo.objects.get(id=todo_id)
+    todo.title = request.GET['title']
+    todo.content = request.GET['content']
+    todo.priority = request.GET['priority']
+
+    date = request.GET['datepicker'].strip()
+    time = request.GET['timepicker'].strip()
+
+    if date != "" or time != "":
+        time = time_format(time)
+        date = date.replace('.', '-')
+        if date == "":
+            date = timezone.datetime.today().strftime("%Y-%m-%d")
+
+        todo.deadline = date+" "+time
+    else:
+        todo.deadline = None
+
+    todo.updated_at = timezone.datetime.today()
+
+    todo.save()
+
+    return redirect('/')
     #수정 : 수정화면 + 체크박스 바로바로 반영?
+
+
+def complete(request):
+    todo_id = request.POST.get('todo_id', None)
+    todo = get_object_or_404(Todo, id=todo_id)
+    old = todo.completed
+    todo.completed = not todo.completed
+    new = todo.completed
+    print(old,'->',new)
+
+    context = {'status': todo.completed}
+    todo.save()
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 
 def delete(request):
@@ -69,7 +109,7 @@ def delete(request):
 
 def notification():
     # 날짜 지난거 뱃지로 표시하자 (몇개인지...)
-    return Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=datetime.datetime.now()).count()
+    return Todo.objects.filter(completed=False, deadline__isnull=False, deadline__lt=timezone.datetime.now()).count()
 
 
 def out_of_date(request):

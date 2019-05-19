@@ -12,7 +12,7 @@ class Todo(models.Model):
     priority = models.CharField(max_length=1, choices=PRIORITY, default=0)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=False)
     deadline = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)
 

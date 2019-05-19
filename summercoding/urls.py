@@ -23,5 +23,6 @@ urlpatterns = [
     path('new/', todo.views.new, name='new'),
     path('detail/<int:todo_id>', todo.views.detail, name="detail"),
     path('add/', todo.views.add, name="add"),
-    path('update/', todo.views.update, name="update")
+    path('update/<int:todo_id>', todo.views.update, name="update"),
+    path('complete/', todo.views.complete, name="complete"),
 ]
